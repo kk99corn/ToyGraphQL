@@ -20,7 +20,7 @@ public class PersonController {
 
 	@SchemaMapping(typeName = "Query", value = "findAll")
 	public List<Person> findAll() {
-		return (List<Person>) personRepository.findAll();
+		return personRepository.findAll();
 	}
 
 	@SchemaMapping(typeName = "Query", value = "findById")
