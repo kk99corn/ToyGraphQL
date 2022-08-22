@@ -22,7 +22,7 @@ public class PersonService {
 	}
 
 	public Person findById(Integer id) {
-		Person person = null;
+		Person person;
 
 		Optional<Person> findPerson = personRepository.findById(id);
 		if (findPerson.isPresent()) {
