@@ -16,3 +16,7 @@ https://hahahoho5915.tistory.com/56
 참조  
 https://www.danvega.dev/blog/2022/05/12/spring-data-jpa-pagination/  
 https://www.danvega.dev/blog/2022/05/17/spring-for-graphql/  
+
+JPA N+1  
+https://jaime-note.tistory.com/54  
+@EntityGraph
