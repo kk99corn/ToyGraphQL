@@ -27,7 +27,7 @@ class PersonServiceTest {
 	void findAll() {
 		// given
 		// when
-		List<Person> personList = personService.findAll();
+		List<PersonDto> personList = personService.findAll();
 
 		// then
 		assertThat(personList.size()).isGreaterThan(0);
@@ -40,7 +40,7 @@ class PersonServiceTest {
 		Integer id = 1;
 
 		// when
-		Person person = personService.findById(id);
+		PersonDto person = personService.findById(id);
 
 		// then
 		assertThat(person.getId()).isEqualTo(id);
@@ -56,7 +56,7 @@ class PersonServiceTest {
 		// then
 		Assertions.assertThrows(GraphQLNotFoundException.class, () -> {
 			// when
-			Person person = personService.findById(id);
+			PersonDto person = personService.findById(id);
 		});
 	}
 }

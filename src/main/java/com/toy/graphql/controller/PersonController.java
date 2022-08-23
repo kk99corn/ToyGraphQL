@@ -1,5 +1,6 @@
 package com.toy.graphql.controller;
 
+import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.entity.Person;
 import com.toy.graphql.service.PersonService;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -18,12 +19,12 @@ public class PersonController {
 	}
 
 	@SchemaMapping(typeName = "Query", value = "findAll")
-	public List<Person> findAll() {
+	public List<PersonDto> findAll() {
 		return personService.findAll();
 	}
 
 	@SchemaMapping(typeName = "Query", value = "findById")
-	public Person findById(@Argument Integer id) {
+	public PersonDto findById(@Argument Integer id) {
 		return personService.findById(id);
 	}
 }

@@ -13,5 +13,5 @@ public class PersonDto {
 	private String lastName;
 	private String phoneNumber;
 	private String email;
-	private AddressDto addressDto;
+	private AddressDto address;
 }
