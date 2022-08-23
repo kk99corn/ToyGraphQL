@@ -1,4 +1,4 @@
-package com.toy.graphql.model;
+package com.toy.graphql.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

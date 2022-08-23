@@ -1,7 +1,7 @@
 package com.toy.graphql.data;
 
-import com.toy.graphql.model.Address;
-import com.toy.graphql.model.Person;
+import com.toy.graphql.entity.Address;
+import com.toy.graphql.entity.Person;
 import com.toy.graphql.repository.PersonRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

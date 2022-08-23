@@ -1,8 +1,9 @@
 package com.toy.graphql.service;
 
 
+import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.exception.GraphQLNotFoundException;
-import com.toy.graphql.model.Person;
+import com.toy.graphql.entity.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

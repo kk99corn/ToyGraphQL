@@ -1,6 +1,6 @@
 package com.toy.graphql.repository;
 
-import com.toy.graphql.model.Person;
+import com.toy.graphql.entity.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

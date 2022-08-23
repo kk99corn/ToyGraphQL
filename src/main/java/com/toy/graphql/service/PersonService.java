@@ -1,7 +1,8 @@
 package com.toy.graphql.service;
 
+import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.exception.GraphQLNotFoundException;
-import com.toy.graphql.model.Person;
+import com.toy.graphql.entity.Person;
 import com.toy.graphql.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 

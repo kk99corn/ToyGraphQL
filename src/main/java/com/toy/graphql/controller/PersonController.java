@@ -1,6 +1,6 @@
 package com.toy.graphql.controller;
 
-import com.toy.graphql.model.Person;
+import com.toy.graphql.entity.Person;
 import com.toy.graphql.service.PersonService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
