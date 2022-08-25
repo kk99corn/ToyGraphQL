@@ -5,6 +5,7 @@ import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.entity.Address;
 import com.toy.graphql.exception.GraphQLNotFoundException;
 import com.toy.graphql.entity.Person;
+import com.toy.graphql.repository.AddressRepository;
 import com.toy.graphql.repository.PersonRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,11 @@ import java.util.Optional;
 public class PersonService {
 
 	private final PersonRepository personRepository;
+	private final AddressRepository addressRepository;
 
-	public PersonService(PersonRepository personRepository) {
+	public PersonService(PersonRepository personRepository, AddressRepository addressRepository) {
 		this.personRepository = personRepository;
+		this.addressRepository = addressRepository;
 	}
 
 	public List<PersonDto> findAll() {
@@ -63,6 +66,33 @@ public class PersonService {
 					.build();
 		} else {
 			throw new GraphQLNotFoundException("data not found. id=" + id);
+		}
+		return personDto;
+	}
+
+	public PersonDto savePerson(PersonDto personDto) {
+		AddressDto addressDto;
+		Optional<Address> findAddress = addressRepository.findById(personDto.getAddress().getId());
+		if (findAddress.isPresent()) {
+			Address address = findAddress.get();
+			addressDto = AddressDto.builder()
+					.id(address.getId())
+					.address(address.getAddress())
+					.city(address.getCity())
+					.state(address.getState())
+					.zip(address.getZip())
+					.build();
+
+			Person person = personRepository.save(new Person(
+					personDto.getFirstName(),
+					personDto.getLastName(),
+					personDto.getPhoneNumber(),
+					personDto.getEmail(),
+					address
+			));
+
+			personDto.setId(person.getId());
+			personDto.setAddress(addressDto);
 		}
 		return personDto;
 	}
