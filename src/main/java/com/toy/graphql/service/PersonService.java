@@ -93,6 +93,8 @@ public class PersonService {
 
 			personDto.setId(person.getId());
 			personDto.setAddress(addressDto);
+		} else {
+			personDto = null;
 		}
 		return personDto;
 	}

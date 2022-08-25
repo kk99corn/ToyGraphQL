@@ -1,9 +1,9 @@
 package com.toy.graphql.service;
 
 
+import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.exception.GraphQLNotFoundException;
-import com.toy.graphql.entity.Person;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,5 +58,48 @@ class PersonServiceTest {
 			// when
 			PersonDto person = personService.findById(id);
 		});
+	}
+
+	@DisplayName("savePerson 테스트")
+	@Test
+	void savePerson() {
+		// given
+		PersonDto personDto = PersonDto.builder()
+				.firstName("kkk")
+				.lastName("lll")
+				.phoneNumber("000-1111-2222")
+				.email("email@email.com")
+				.address(AddressDto.builder()
+						.id(2)
+						.build())
+				.build();
+
+		// then
+		PersonDto savePerson = personService.savePerson(personDto);
+
+		// when
+		assertThat(savePerson.getFirstName()).isEqualTo("kkk");
+		assertThat(savePerson.getAddress().getZip()).isEqualTo("99999");
+	}
+
+	@DisplayName("savePerson 테스트 - Bad Address")
+	@Test
+	void savePerson2() {
+		// given
+		PersonDto personDto = PersonDto.builder()
+				.firstName("kkk")
+				.lastName("lll")
+				.phoneNumber("000-1111-2222")
+				.email("email@email.com")
+				.address(AddressDto.builder()
+						.id(1)
+						.build())
+				.build();
+
+		// then
+		PersonDto savePerson = personService.savePerson(personDto);
+
+		// when
+		assertThat(savePerson).isNull();
 	}
 }
