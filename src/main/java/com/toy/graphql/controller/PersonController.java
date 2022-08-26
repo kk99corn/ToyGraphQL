@@ -2,6 +2,7 @@ package com.toy.graphql.controller;
 
 import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.dto.PersonDto;
+import com.toy.graphql.exception.GraphQLBadRequestException;
 import com.toy.graphql.service.PersonService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -26,6 +27,7 @@ public class PersonController {
 
 	@SchemaMapping(typeName = "Query", value = "findById")
 	public PersonDto findById(@Argument Integer id) {
+		if (id <= 0) throw new GraphQLBadRequestException("id=" + id);
 		return personService.findById(id);
 	}
 
