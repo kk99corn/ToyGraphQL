@@ -24,6 +24,12 @@ public class PersonService {
 		this.addressRepository = addressRepository;
 	}
 
+
+	/**
+	 * 전체 Person 정보 조회
+	 * 
+	 * @return List<PersonDto>
+	 */
 	public List<PersonDto> findAll() {
 		List<PersonDto> personDtoList = new ArrayList<>();
 		List<Person> personList = personRepository.findAll();
@@ -45,6 +51,12 @@ public class PersonService {
 		return personDtoList;
 	}
 
+	/**
+	 * id로 Person 정보 조회
+	 *
+	 * @param id Integer
+	 * @return PersonDto
+	 */
 	public PersonDto findById(Integer id) {
 		PersonDto personDto;
 
@@ -70,6 +82,12 @@ public class PersonService {
 		return personDto;
 	}
 
+	/**
+	 * Person 정보 입력
+	 * 
+	 * @param personDto PersonDto
+	 * @return PersonDto
+	 */
 	public PersonDto savePerson(PersonDto personDto) {
 		AddressDto addressDto;
 		Optional<Address> findAddress = addressRepository.findById(personDto.getAddress().getId());

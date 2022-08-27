@@ -20,17 +20,38 @@ public class PersonController {
 		this.personService = personService;
 	}
 
+	/**
+	 * 전체 Person 정보 조회
+	 * 
+	 * @return List<PersonDto>
+	 */
 	@SchemaMapping(typeName = "Query", value = "findAll")
 	public List<PersonDto> findAll() {
 		return personService.findAll();
 	}
 
+	/**
+	 * id로 Person 정보 조회
+	 * 
+	 * @param id Integer
+	 * @return PersonDto
+	 */
 	@SchemaMapping(typeName = "Query", value = "findById")
 	public PersonDto findById(@Argument Integer id) {
 		if (id <= 0) throw new GraphQLBadRequestException("id=" + id);
 		return personService.findById(id);
 	}
 
+	/**
+	 * Person 정보 입력
+	 * 
+	 * @param firstName String
+	 * @param lastName String
+	 * @param phoneNumber String
+	 * @param email String
+	 * @param addressId Integer
+	 * @return PersonDto
+	 */
 	@MutationMapping(value = "person")
 	public PersonDto savePerson(@Argument String firstName,
 								@Argument String lastName,
