@@ -11,6 +11,12 @@ type Mutation {
         email: String
         addressId: Int
     ): Person
+    address(
+        address: String
+        city: String
+        state: String
+        zip: String
+    ): Address
 }
 
 type Person {
