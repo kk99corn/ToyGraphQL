@@ -1,6 +1,7 @@
 package com.toy.graphql.repository;
 
 import com.toy.graphql.entity.Address;
+import com.toy.graphql.entity.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +44,28 @@ class AddressRepositoryTest {
 
 		// then
 		assertThat(address.isPresent()).isFalse();
+	}
+
+	@DisplayName("save 테스트")
+	@Test
+	void save() {
+		// given
+		String address = "address";
+		String city = "city";
+		String state = "state";
+		String zip = "zip";
+
+		// when
+		Address saveAddress = addressRepository.save(new Address(
+				address,
+				city,
+				state,
+				zip
+		));
+
+		// then
+		assertThat(saveAddress).isNotNull();
+		assertThat(saveAddress.getId()).isGreaterThan(0);
+		assertThat(saveAddress.getAddress()).isEqualTo(address);
 	}
 }
