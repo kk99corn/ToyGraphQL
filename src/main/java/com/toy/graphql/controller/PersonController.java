@@ -22,7 +22,7 @@ public class PersonController {
 
 	/**
 	 * 전체 Person 정보 조회
-	 * 
+	 *
 	 * @return List<PersonDto>
 	 */
 	@SchemaMapping(typeName = "Query", value = "findAll")
@@ -32,7 +32,7 @@ public class PersonController {
 
 	/**
 	 * id로 Person 정보 조회
-	 * 
+	 *
 	 * @param id Integer
 	 * @return PersonDto
 	 */
@@ -44,12 +44,12 @@ public class PersonController {
 
 	/**
 	 * Person 정보 입력
-	 * 
-	 * @param firstName String
-	 * @param lastName String
+	 *
+	 * @param firstName   String
+	 * @param lastName    String
 	 * @param phoneNumber String
-	 * @param email String
-	 * @param addressId Integer
+	 * @param email       String
+	 * @param addressId   Integer
 	 * @return PersonDto
 	 */
 	@MutationMapping(value = "person")
@@ -68,5 +68,29 @@ public class PersonController {
 						.build())
 				.build();
 		return personService.savePerson(personDto);
+	}
+
+	/**
+	 * Address 정보 ㅇ비력
+	 *
+	 * @param address String
+	 * @param city    String
+	 * @param state   String
+	 * @param zip     String
+	 * @return AddressDto
+	 */
+	@MutationMapping(value = "address")
+	public AddressDto saveAddress(@Argument String address,
+								  @Argument String city,
+								  @Argument String state,
+								  @Argument String zip) {
+
+		AddressDto addressDto = AddressDto.builder()
+				.address(address)
+				.city(city)
+				.state(state)
+				.zip(zip)
+				.build();
+		return personService.saveAddress(addressDto);
 	}
 }

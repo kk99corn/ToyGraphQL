@@ -27,7 +27,7 @@ public class PersonService {
 
 	/**
 	 * 전체 Person 정보 조회
-	 * 
+	 *
 	 * @return List<PersonDto>
 	 */
 	public List<PersonDto> findAll() {
@@ -84,7 +84,7 @@ public class PersonService {
 
 	/**
 	 * Person 정보 입력
-	 * 
+	 *
 	 * @param personDto PersonDto
 	 * @return PersonDto
 	 */
@@ -115,5 +115,22 @@ public class PersonService {
 			personDto = null;
 		}
 		return personDto;
+	}
+
+	/**
+	 * Address 정보 입력
+	 * 
+	 * @param addressDto AddressDto
+	 * @return AddressDto
+	 */
+	public AddressDto saveAddress(AddressDto addressDto) {
+		Address address = addressRepository.save(new Address(
+				addressDto.getAddress(),
+				addressDto.getCity(),
+				addressDto.getState(),
+				addressDto.getZip()
+		));
+		addressDto.setId(address.getId());
+		return addressDto;
 	}
 }
