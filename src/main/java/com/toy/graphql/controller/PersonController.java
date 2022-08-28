@@ -3,6 +3,7 @@ package com.toy.graphql.controller;
 import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.exception.GraphQLBadRequestException;
+import com.toy.graphql.service.AddressService;
 import com.toy.graphql.service.PersonService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -15,9 +16,11 @@ import java.util.List;
 public class PersonController {
 
 	private final PersonService personService;
+	private final AddressService addressService;
 
-	public PersonController(PersonService personService) {
+	public PersonController(PersonService personService, AddressService addressService) {
 		this.personService = personService;
+		this.addressService = addressService;
 	}
 
 	/**
@@ -91,6 +94,6 @@ public class PersonController {
 				.state(state)
 				.zip(zip)
 				.build();
-		return personService.saveAddress(addressDto);
+		return addressService.saveAddress(addressDto);
 	}
 }

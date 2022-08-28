@@ -24,7 +24,6 @@ public class PersonService {
 		this.addressRepository = addressRepository;
 	}
 
-
 	/**
 	 * 전체 Person 정보 조회
 	 *
@@ -115,22 +114,5 @@ public class PersonService {
 			personDto = null;
 		}
 		return personDto;
-	}
-
-	/**
-	 * Address 정보 입력
-	 * 
-	 * @param addressDto AddressDto
-	 * @return AddressDto
-	 */
-	public AddressDto saveAddress(AddressDto addressDto) {
-		Address address = addressRepository.save(new Address(
-				addressDto.getAddress(),
-				addressDto.getCity(),
-				addressDto.getState(),
-				addressDto.getZip()
-		));
-		addressDto.setId(address.getId());
-		return addressDto;
 	}
 }
