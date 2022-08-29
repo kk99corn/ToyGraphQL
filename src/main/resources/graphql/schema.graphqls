@@ -5,6 +5,7 @@ type Query {
 
 type Mutation {
     person(
+        id: Int
         firstName: String
         lastName: String
         phoneNumber: String

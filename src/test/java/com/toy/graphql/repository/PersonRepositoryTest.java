@@ -1,6 +1,5 @@
 package com.toy.graphql.repository;
 
-import com.toy.graphql.entity.Address;
 import com.toy.graphql.entity.Person;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -72,13 +70,15 @@ class PersonRepositoryTest {
 		String email = "email@email.com";
 
 		// when
-		Person person = personRepository.save(new Person(
-				firstName,
-				lastName,
-				phoneNumber,
-				email,
-				null
-		));
+		Person person = personRepository.save(
+				Person.builder()
+						.firstName(firstName)
+						.lastName(lastName)
+						.phoneNumber(phoneNumber)
+						.email(email)
+						.address(null)
+						.build()
+		);
 
 		// then
 		assertThat(person).isNotNull();

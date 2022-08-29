@@ -1,9 +1,6 @@
 package com.toy.graphql.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
+@Builder
 public class Person {
 
 	@Id
@@ -26,7 +24,9 @@ public class Person {
 	@JoinColumn(name = "addressId", referencedColumnName = "id")
 	private Address address;
 
-	public Person(String firstName, String lastName, String phoneNumber, String email, Address address) {
+	@Builder
+	public Person(Integer id, String firstName, String lastName, String phoneNumber, String email, Address address) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.phoneNumber = phoneNumber;

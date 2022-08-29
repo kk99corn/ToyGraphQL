@@ -100,13 +100,14 @@ public class PersonService {
 					.zip(address.getZip())
 					.build();
 
-			Person person = personRepository.save(new Person(
-					personDto.getFirstName(),
-					personDto.getLastName(),
-					personDto.getPhoneNumber(),
-					personDto.getEmail(),
-					address
-			));
+			Person person = personRepository.save(Person.builder()
+					.id(personDto.getId())
+					.firstName(personDto.getFirstName())
+					.lastName(personDto.getLastName())
+					.phoneNumber(personDto.getPhoneNumber())
+					.email(personDto.getEmail())
+					.address(address)
+					.build());
 
 			personDto.setId(person.getId());
 			personDto.setAddress(addressDto);
