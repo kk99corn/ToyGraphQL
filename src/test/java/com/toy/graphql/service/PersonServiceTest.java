@@ -102,4 +102,27 @@ class PersonServiceTest {
 		// when
 		assertThat(savePerson).isNull();
 	}
+
+	@DisplayName("savePerson 테스트 - id로 변경")
+	@Test
+	void savePerson3() {
+		// given
+		PersonDto personDto = PersonDto.builder()
+				.id(1)
+				.firstName("kkk")
+				.lastName("lll")
+				.phoneNumber("000-1111-2222")
+				.email("email@email.com")
+				.address(AddressDto.builder()
+						.id(2)
+						.build())
+				.build();
+
+		// then
+		PersonDto savePerson = personService.savePerson(personDto);
+
+		// when
+		assertThat(savePerson.getFirstName()).isEqualTo("kkk");
+		assertThat(savePerson.getAddress().getZip()).isEqualTo("99999");
+	}
 }
