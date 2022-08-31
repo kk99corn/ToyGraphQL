@@ -85,4 +85,32 @@ class PersonRepositoryTest {
 		assertThat(person.getId()).isGreaterThan(0);
 		assertThat(person.getFirstName()).isEqualTo(firstName);
 	}
+
+	@DisplayName("save 테스트 - id 입력")
+	@Test
+	void save2() {
+		// given
+		Integer id = 1;
+		String firstName = "fir_name";
+		String lastName = "la_name";
+		String phoneNumber = "010-0000-9999";
+		String email = "email@email.com";
+
+		// when
+		Person person = personRepository.save(
+				Person.builder()
+						.id(id)
+						.firstName(firstName)
+						.lastName(lastName)
+						.phoneNumber(phoneNumber)
+						.email(email)
+						.address(null)
+						.build()
+		);
+
+		// then
+		assertThat(person).isNotNull();
+		assertThat(person.getId()).isEqualTo(id);
+		assertThat(person.getFirstName()).isEqualTo(firstName);
+	}
 }
