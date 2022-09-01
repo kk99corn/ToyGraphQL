@@ -21,12 +21,12 @@ public class AddressService {
 	 * @return AddressDto
 	 */
 	public AddressDto saveAddress(AddressDto addressDto) {
-		Address address = addressRepository.save(new Address(
-				addressDto.getAddress(),
-				addressDto.getCity(),
-				addressDto.getState(),
-				addressDto.getZip()
-		));
+		Address address = addressRepository.save(Address.builder()
+				.address(addressDto.getAddress())
+				.city(addressDto.getCity())
+				.state(addressDto.getState())
+				.zip(addressDto.getZip())
+				.build());
 		addressDto.setId(address.getId());
 		return addressDto;
 	}

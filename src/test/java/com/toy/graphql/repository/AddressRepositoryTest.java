@@ -56,12 +56,12 @@ class AddressRepositoryTest {
 		String zip = "zip";
 
 		// when
-		Address saveAddress = addressRepository.save(new Address(
-				address,
-				city,
-				state,
-				zip
-		));
+		Address saveAddress = addressRepository.save(Address.builder()
+				.address(address)
+				.city(city)
+				.state(state)
+				.zip(zip)
+				.build());
 
 		// then
 		assertThat(saveAddress).isNotNull();

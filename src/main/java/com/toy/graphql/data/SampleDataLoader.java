@@ -22,7 +22,13 @@ public class SampleDataLoader implements CommandLineRunner {
 				.lastName("kk99")
 				.phoneNumber("010.9999.9999")
 				.email("gamil@gmail.com")
-				.address(new Address("Street","City","State","99999"))
+				.address(Address.builder()
+						.address("Street")
+						.city("City")
+						.state("State")
+						.zip("99999")
+						.build()
+				)
 				.build();
 		personRepository.save(person);
 
@@ -32,7 +38,12 @@ public class SampleDataLoader implements CommandLineRunner {
 				.lastName("Kim")
 				.phoneNumber("010.0000.0000")
 				.email("gg@gg.com")
-				.address(new Address("st","99City","-","90081"))
+				.address(Address.builder()
+						.address("st")
+						.city("99City")
+						.state("-")
+						.zip("90081")
+						.build())
 				.build();
 		personRepository.save(person);
 
@@ -42,7 +53,12 @@ public class SampleDataLoader implements CommandLineRunner {
 				.lastName("Ya")
 				.phoneNumber("010.0000.0000")
 				.email("ya@suo.com")
-				.address(new Address("Qst","Wind-City","QWER","030"))
+				.address(Address.builder()
+						.address("Qst")
+						.city("Wind-City")
+						.state("QWER")
+						.zip("030")
+						.build())
 				.build();
 		personRepository.save(person);
 	}

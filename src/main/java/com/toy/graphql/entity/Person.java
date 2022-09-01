@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-@Builder
 public class Person {
 
 	@Id

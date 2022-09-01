@@ -1,9 +1,6 @@
 package com.toy.graphql.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +22,9 @@ public class Address {
 	private String state;
 	private String zip;
 
-	public Address(String address, String city, String state, String zip) {
+	@Builder
+	public Address(Integer id, String address, String city, String state, String zip) {
+		this.id = id;
 		this.address = address;
 		this.city = city;
 		this.state = state;
