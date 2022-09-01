@@ -48,6 +48,7 @@ public class PersonController {
 	/**
 	 * Person 정보 입력
 	 *
+	 * @param id          Integer
 	 * @param firstName   String
 	 * @param lastName    String
 	 * @param phoneNumber String
@@ -78,6 +79,7 @@ public class PersonController {
 	/**
 	 * Address 정보 입력
 	 *
+	 * @param id      Integer
 	 * @param address String
 	 * @param city    String
 	 * @param state   String
@@ -85,12 +87,14 @@ public class PersonController {
 	 * @return AddressDto
 	 */
 	@MutationMapping(value = "address")
-	public AddressDto saveAddress(@Argument String address,
+	public AddressDto saveAddress(@Argument Integer id,
+								  @Argument String address,
 								  @Argument String city,
 								  @Argument String state,
 								  @Argument String zip) {
 
 		AddressDto addressDto = AddressDto.builder()
+				.id(id)
 				.address(address)
 				.city(city)
 				.state(state)

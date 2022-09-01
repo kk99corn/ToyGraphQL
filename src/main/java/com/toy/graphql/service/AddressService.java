@@ -22,6 +22,7 @@ public class AddressService {
 	 */
 	public AddressDto saveAddress(AddressDto addressDto) {
 		Address address = addressRepository.save(Address.builder()
+				.id(addressDto.getId())
 				.address(addressDto.getAddress())
 				.city(addressDto.getCity())
 				.state(addressDto.getState())
