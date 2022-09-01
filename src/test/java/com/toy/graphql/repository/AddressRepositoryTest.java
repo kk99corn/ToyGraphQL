@@ -68,4 +68,29 @@ class AddressRepositoryTest {
 		assertThat(saveAddress.getId()).isGreaterThan(0);
 		assertThat(saveAddress.getAddress()).isEqualTo(address);
 	}
+
+	@DisplayName("save 테스트 - id 입력")
+	@Test
+	void save2() {
+		// given
+		Integer id = 2;
+		String address = "address";
+		String city = "city";
+		String state = "state";
+		String zip = "zip";
+
+		// when
+		Address saveAddress = addressRepository.save(Address.builder()
+				.id(id)
+				.address(address)
+				.city(city)
+				.state(state)
+				.zip(zip)
+				.build());
+
+		// then
+		assertThat(saveAddress).isNotNull();
+		assertThat(saveAddress.getId()).isEqualTo(id);
+		assertThat(saveAddress.getAddress()).isEqualTo(address);
+	}
 }
