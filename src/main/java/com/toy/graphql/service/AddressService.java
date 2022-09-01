@@ -5,6 +5,9 @@ import com.toy.graphql.entity.Address;
 import com.toy.graphql.repository.AddressRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class AddressService {
 
@@ -30,5 +33,25 @@ public class AddressService {
 				.build());
 		addressDto.setId(address.getId());
 		return addressDto;
+	}
+
+	/**
+	 * 전체 Address 정보 조회
+	 *
+	 * @return List<AddressDto>
+	 */
+	public List<AddressDto> findAll() {
+		List<AddressDto> addressDtoList = new ArrayList<>();
+		List<Address> addressList = addressRepository.findAll();
+		for (Address address: addressList) {
+			addressDtoList.add(AddressDto.builder()
+					.id(address.getId())
+					.address(address.getAddress())
+					.city(address.getCity())
+					.state(address.getState())
+					.zip(address.getZip())
+					.build());
+		}
+		return addressDtoList;
 	}
 }
