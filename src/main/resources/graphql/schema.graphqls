@@ -1,6 +1,7 @@
 type Query {
     findAll: [Person]
     findById(id: ID!): Person
+    findAddressAll: [Address]
 }
 
 type Mutation {
