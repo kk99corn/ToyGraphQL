@@ -37,4 +37,29 @@ class AddressServiceTest {
 		assertThat(addressDto.getId()).isGreaterThan(0);
 		assertThat(addressDto.getAddress()).isEqualTo(address);
 	}
+
+	@DisplayName("save 테스트 - id로 변경")
+	@Test
+	void saveAddress2() {
+		// given
+		Integer id = 2;
+		String address = "address";
+		String city = "city";
+		String state = "state";
+		String zip = "zip";
+
+		// when
+		AddressDto addressDto = addressService.saveAddress(AddressDto.builder()
+				.id(id)
+				.address(address)
+				.city(city)
+				.state(state)
+				.zip(zip)
+				.build());
+
+		// then
+		assertThat(addressDto).isNotNull();
+		assertThat(addressDto.getId()).isEqualTo(2);
+		assertThat(addressDto.getAddress()).isEqualTo(address);
+	}
 }
