@@ -9,7 +9,6 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
-@Setter
 @ToString
 @NoArgsConstructor
 public class Address {
