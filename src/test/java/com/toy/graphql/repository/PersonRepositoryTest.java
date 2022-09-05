@@ -113,4 +113,18 @@ class PersonRepositoryTest {
 		assertThat(person.getId()).isEqualTo(id);
 		assertThat(person.getFirstName()).isEqualTo(firstName);
 	}
+
+	@DisplayName("delete 테스트")
+	@Test
+	void delete() {
+		// given
+		Integer id = 1;
+
+		// when
+		personRepository.deleteById(id);
+
+		// then
+		Optional<Person> findPerson = personRepository.findById(id);
+		assertThat(findPerson).isNotPresent();
+	}
 }
