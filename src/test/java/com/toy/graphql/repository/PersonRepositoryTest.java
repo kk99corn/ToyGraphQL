@@ -1,16 +1,19 @@
 package com.toy.graphql.repository;
 
 import com.toy.graphql.entity.Person;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
@@ -126,5 +129,18 @@ class PersonRepositoryTest {
 		// then
 		Optional<Person> findPerson = personRepository.findById(id);
 		assertThat(findPerson).isNotPresent();
+	}
+
+	@DisplayName("delete 테스트 - 없는 id")
+	@Test
+	void delete2() {
+		// given
+		Integer id = 999;
+
+		// when & then
+		Assertions.assertThrows(EmptyResultDataAccessException.class,
+				() -> {
+					personRepository.deleteById(id);
+				});
 	}
 }
