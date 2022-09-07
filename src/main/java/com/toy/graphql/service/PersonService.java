@@ -116,4 +116,13 @@ public class PersonService {
 		}
 		return personDto;
 	}
+
+	/**
+	 * Person 정보 삭제
+	 *
+	 * @param id Integer
+	 */
+	public void deletePerson(Integer id) {
+		personRepository.deleteById(id);
+	}
 }
