@@ -20,6 +20,9 @@ type Mutation {
         state: String
         zip: String
     ): Address
+    deletePerson(
+        id: Int
+    ): String
 }
 
 type Person {
