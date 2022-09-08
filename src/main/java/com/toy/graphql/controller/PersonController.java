@@ -102,4 +102,10 @@ public class PersonController {
 				.build();
 		return addressService.saveAddress(addressDto);
 	}
+
+	@MutationMapping(value = "deletePerson")
+	public String deletePerson(@Argument Integer id) {
+		personService.deletePerson(id);
+		return "OK";
+	}
 }
