@@ -11,14 +11,14 @@ import javax.persistence.*;
 public class Person {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String firstName;
 	private String lastName;
 	private String phoneNumber;
 	private String email;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "addressId", referencedColumnName = "id")
 	private Address address;
 
