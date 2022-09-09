@@ -7,6 +7,7 @@ import com.toy.graphql.exception.GraphQLNotFoundException;
 import com.toy.graphql.entity.Person;
 import com.toy.graphql.repository.AddressRepository;
 import com.toy.graphql.repository.PersonRepository;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -121,8 +122,15 @@ public class PersonService {
 	 * Person 정보 삭제
 	 *
 	 * @param id Integer
+	 * @return String
 	 */
-	public void deletePerson(Integer id) {
-		personRepository.deleteById(id);
+	public String deletePerson(Integer id) {
+		String result = "OK";
+		try {
+			personRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			result = "ID=" + id + " is null";
+		}
+		return result;
 	}
 }

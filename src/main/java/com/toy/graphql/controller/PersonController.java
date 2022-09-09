@@ -105,7 +105,6 @@ public class PersonController {
 
 	@MutationMapping(value = "deletePerson")
 	public String deletePerson(@Argument Integer id) {
-		personService.deletePerson(id);
-		return "OK";
+		return personService.deletePerson(id);
 	}
 }
