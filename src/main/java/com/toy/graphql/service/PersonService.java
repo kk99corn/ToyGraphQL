@@ -1,5 +1,8 @@
 package com.toy.graphql.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.entity.Address;
@@ -80,6 +83,39 @@ public class PersonService {
 			throw new GraphQLNotFoundException("data not found. id=" + id);
 		}
 		return personDto;
+	}
+
+	/**
+	 * id로 Person 정보 조회
+	 *
+	 * @param id Integer
+	 * @return PersonDto
+	 */
+	public JsonNode findByIdJson(Integer id) throws JsonProcessingException {
+		PersonDto personDto;
+
+		Optional<Person> findPerson = personRepository.findById(id);
+		if (findPerson.isPresent()) {
+			Person person = findPerson.get();
+			personDto = PersonDto.builder()
+					.id(person.getId())
+					.firstName(person.getFirstName())
+					.lastName(person.getLastName())
+					.phoneNumber(person.getPhoneNumber())
+					.email(person.getEmail())
+					.address(AddressDto.builder()
+							.id(person.getAddress().getId())
+							.city(person.getAddress().getCity())
+							.state(person.getAddress().getState())
+							.zip(person.getAddress().getZip())
+							.build())
+					.build();
+		} else {
+			throw new GraphQLNotFoundException("data not found. id=" + id);
+		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		return objectMapper.readValue(objectMapper.writeValueAsString(personDto), JsonNode.class);
 	}
 
 	/**
