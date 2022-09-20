@@ -1,5 +1,7 @@
 package com.toy.graphql.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.dto.PersonDto;
 import com.toy.graphql.exception.GraphQLBadRequestException;
@@ -43,6 +45,18 @@ public class PersonController {
 	public PersonDto findById(@Argument Integer id) {
 		if (id <= 0) throw new GraphQLBadRequestException("id=" + id);
 		return personService.findById(id);
+	}
+
+	/**
+	 * id로 Person 정보 조회
+	 *
+	 * @param id Integer
+	 * @return PersonDto
+	 */
+	@SchemaMapping(typeName = "Query", value = "findByIdJson")
+	public JsonNode findByIdJson(@Argument Integer id) throws JsonProcessingException {
+		if (id <= 0) throw new GraphQLBadRequestException("id=" + id);
+		return personService.findByIdJson(id);
 	}
 
 	/**
