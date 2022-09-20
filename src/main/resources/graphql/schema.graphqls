@@ -1,7 +1,10 @@
+scalar JSON
+
 type Query {
     findAll: [Person]
     findById(id: ID!): Person
     findAddressAll: [Address]
+    findByIdJson(id: ID!): JSON
 }
 
 type Mutation {
