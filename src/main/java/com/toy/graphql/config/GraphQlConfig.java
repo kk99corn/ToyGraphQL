@@ -1,4 +1,4 @@
-package com.toy.graphql.cofig;
+package com.toy.graphql.config;
 
 import graphql.schema.GraphQLScalarType;
 import org.springframework.context.annotation.Bean;
