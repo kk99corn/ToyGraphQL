@@ -2,6 +2,8 @@ package com.toy.graphql.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 @ToString
@@ -9,7 +11,7 @@ import lombok.*;
 public class AddressDto {
 
 	private Integer id;
-	private String address;
+	private @NotNull String address;
 	private String city;
 	private String state;
 	private String zip;
