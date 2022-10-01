@@ -12,7 +12,7 @@ public class AddressDto {
 
 	private Integer id;
 	private @NotNull String address;
-	private @NotNull String city;
+	private String city;
 	private String state;
 	private String zip;
 }
