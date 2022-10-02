@@ -11,7 +11,7 @@ public class AsyncService {
 	@Async
 	public void async() throws InterruptedException {
 		log.info("async-start");
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		log.info("async-end");
 	}
 }

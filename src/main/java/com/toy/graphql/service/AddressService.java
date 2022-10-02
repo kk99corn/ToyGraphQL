@@ -3,18 +3,23 @@ package com.toy.graphql.service;
 import com.toy.graphql.dto.AddressDto;
 import com.toy.graphql.entity.Address;
 import com.toy.graphql.repository.AddressRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service
 public class AddressService {
 
 	private final AddressRepository addressRepository;
 
-	public AddressService(AddressRepository addressRepository) {
+	private final AsyncService asyncService;
+
+	public AddressService(AddressRepository addressRepository, AsyncService asyncService) {
 		this.addressRepository = addressRepository;
+		this.asyncService = asyncService;
 	}
 
 	/**
@@ -53,5 +58,11 @@ public class AddressService {
 					.build());
 		}
 		return addressDtoList;
+	}
+
+	public void asyncCallTest() throws InterruptedException {
+		log.info("main service start");
+		asyncService.async();
+		log.info("main service end");
 	}
 }
