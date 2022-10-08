@@ -11,7 +11,7 @@ public class GraphQlConfig {
 	public RuntimeWiringConfigurer runtimeWiringConfigurer() {
 		GraphQLScalarType jsonScalarType = GraphQLScalarType.newScalar()
 				.name("JSON")
-				.description("A JSON scalar")
+				.description("A JSON scalar Type")
 				.coercing(new JsonNodeCoercing())
 				.build();
 
