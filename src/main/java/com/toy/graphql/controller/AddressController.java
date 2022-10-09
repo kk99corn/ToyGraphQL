@@ -1,12 +1,10 @@
 package com.toy.graphql.controller;
 
 import com.toy.graphql.dto.AddressDto;
-import com.toy.graphql.entity.Address;
 import com.toy.graphql.service.AddressService;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
